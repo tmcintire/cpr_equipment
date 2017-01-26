@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy EquipmentForm %}
+
+{% block content %}
+
+<div class="text-center">
+<h3>Add new Equipment to Inventory</h3>
+
+<form action="/addequipment/" method="post">{% csrf_token %}
+
+{{ form|crispy }}
+
+<br />
+<input type="submit" name="submit" value="Submit">
+
+
+</form>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,6 @@
+from models import Service, Department
+
+def navbar(request):
+    years = Service.objects.all().dates('service_date', 'year')
+
+    return locals()

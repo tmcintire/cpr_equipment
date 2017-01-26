@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy OSForm %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <h4> {{ message }} </h4>
+    {% endfor %}
+{% endif %}
+
+
+{% endblock %}

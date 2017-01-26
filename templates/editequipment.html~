@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy EquipmentForm %}
+
+{% block content %}
+
+<h3>Add new Equipment to Inventory</h3>
+
+<form action="#" method="post">{% csrf_token %}
+
+{{ form|crispy }}
+
+<input class="btn btn-primary" type="submit" name="submit" value="Submit">
+
+
+</form>
+
+
+{% endblock %}

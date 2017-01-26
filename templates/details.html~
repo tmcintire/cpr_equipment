@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy ServiceForm %}
+
+
+{% block content %}
+
+<h2 class="text-center"> Equipment Detail Page </h2>
+<hr>
+<div class="col-md-6">
+<h4>Details -- <a href="/equipment/edit/{{ equipment.id }}/">Edit</a></h4>
+    <p><strong>ID:</strong> {{ equipment.number }} </p>
+    <p><strong>Department:</strong> {{ equipment.department }} </p>
+    <p><strong>Name:</strong>  {{ equipment.name }} </p>
+    <p><strong>VIN #:</strong> {{ equipment.vin }} </p>
+    <p><strong>Tag #:</strong> {{ equipment.tag }} </p>
+    <p><strong>Current Driver:</strong> {{ equipment.driver }} </p>
+</div>
+
+<div class="col-md-6">
+    <h4>Add Service Log</h4>
+    <form action="{% url 'details' equipment.id %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+    {{ form|crispy }}
+
+    <br />
+    <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+
+    </form>
+</div>
+
+<div class="clear"></div>
+<hr>
+<h4><strong><u>Service History</strong></u></h4>
+<div class="table-responsive">
+<table class="display servicedetailtable">
+    <thead>
+        <tr>
+            <th style="width: 1%">View</th>
+            <th>Date</th>
+            <th>Summary</th>
+            <th class="hidecolumn">Notes</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for service in services %}
+        <tr>
+            <td><a href="/service/{{ service.id }}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td>
+            <td>{{ service.service_date|date:"SHORT_DATE_FORMAT" }}</td>
+            <td>{{ service.summary|truncatewords:10 }}</td>
+            <td class="hidecolumn">{{ service.notes|truncatewords:10 }}</td>
+            <td>${{ service.cost|floatformat:2 }}</td>
+        </tr>
+{% endfor %}
+      </tbody>
+<tr bgcolor="FFF0C2">
+    <td>Total</td>
+    <td></td>
+    <td class="hidecolumn"></td>
+    <td></td>
+    <td>${{ total|floatformat:2 }}</td>
+</tr>
+
+</table>
+</div>
+{% endblock %}

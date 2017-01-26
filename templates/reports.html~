@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1 class="pagetitle text-center">{{ year }} Report</h1>
+<hr>
+<div class="col-md-5">
+<h3>Total for {{ year }}</h3>
+<table cellspacing="30">
+    <thead>
+        <th class="text-center">Summary</th>
+        <th class="text-center">Total</th>
+    </thead>
+    <tr bgcolor="FFF0C2">
+        <td>Total Spent on all Vehicles:</td>
+        <td class="text-right">${{ total|floatformat:2 }} </td>
+    </tr>
+    </table>
+</div>
+
+<div class="col-md-5">
+    <table class="reportstable">
+            <thead>
+                <th width="10%">Vehicle</th>
+                <th>Total Spent</th>
+            </thead>
+            <tbody>
+            {% for i, value in costs.items %}
+            <tr>
+                <td> <a href="/details/{{ i.id }}/">{{ i }}</a></td>
+                <td> ${{ i.total_cost }}</td>
+             {% endfor %}
+            </tr>
+            </tbody>
+    </table>
+</div>
+
+{% endblock %}

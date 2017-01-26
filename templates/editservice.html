@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy ServiceForm %}
+
+{% block content %}
+
+<h3>Edit Service Entry</h3>
+
+<form action="#" method="post">{% csrf_token %}
+
+{{ form|crispy }}
+
+<input type="submit" class="btn btn-primary" name="submit" value="Update">
+
+
+</form>
+
+
+
+{% endblock %}

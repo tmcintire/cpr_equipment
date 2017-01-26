@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy NewServiceForm %}
+
+{% block content %}
+<h1 class="pagetitle">Add Service Record</h1>
+<br />
+{% if messages %}
+    {% for message in messages %}
+        <h4> {{ message }} </h4>
+    {% endfor %}
+{% endif %}
+<form action="/addservice/" method="post">{% csrf_token %}
+
+{{ form | crispy }}
+<br />
+<input type="submit" name="submit" value="Submit">
+
+
+</form>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="text-center">Service Details</h3>
+
+<button class="btn btn-primary"><a href="/details/{{ service.equipment_id.id }}/" style="color:white">Back</a></button><br />
+
+    <p><strong>Date of Service: </strong>{{ service.service_date }}</p>
+    <p><strong>Vehicle ID: </strong>{{ service.equipment_id }}</p>
+    <p><strong>Summary: </strong>{{ service.summary }}</p>
+    <p><strong>Details: </strong>{{ service.notes }}</p>
+    <p><strong>Total Cost: </strong>${{ service.cost }}</p>
+
+<button class="btn btn-primary"><a href="/service/edit/{{ service.id }}/" style="color:white">Edit Service</a></button>
+<button class="btn btn-primary"><a href="/service/delete/{{ service.id }}/" style="color:white">Delete Service</a></button>
+
+{% endblock %}

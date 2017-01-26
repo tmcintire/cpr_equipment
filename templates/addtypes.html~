@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy EquipmentForm %}
+
+{% block content %}
+<div class="text-center">
+<h3>Add new Equipment Type</h3>
+
+<form action="/addtype/" method="post">{% csrf_token %}
+
+{{ form|crispy }}
+<br />
+<input type="submit" name="submit" value="Submit">
+
+
+</form>
+<br />
+{% for type in types %}
+
+<table border="1" class="text-center typetable">
+
+    <tr>
+        <td style="width: 200px"> {{ type.type }}</td>
+
+    </tr>
+
+</table>
+
+{% endfor %}
+
+</div>
+
+
+{% endblock %}

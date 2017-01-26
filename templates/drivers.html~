@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy DriverForm %}
+
+{% block content %}
+<div class="col-md-5">
+    <h3>Current Drivers</h3>
+    <hr>
+    <table class="driverstable">
+        <thead>
+            <tr>
+                <th>View</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for driver in drivers %}
+            <tr>
+                <td> <a href="/drivers/edit/{{ driver.id }}">View</a></td>
+                <td> {{ driver.first_name }}</td>
+                <td> {{ driver.last_name }} </td>
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+<div class="col-md-5 text-center">
+    <h3>Add new Driver</h3>
+
+    <form class="center" action="/drivers/add/" method="post">{% csrf_token %}
+
+    {{ form|crispy }}
+
+    <br />
+    <input type="submit" name="submit" value="Submit">
+
+
+    </form>
+
+</div>
+{% endblock %}

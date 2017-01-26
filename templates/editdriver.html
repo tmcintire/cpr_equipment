@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy DriverForm %}
+
+{% block content %}
+
+<h3>Edit Driver</h3>
+
+<form action="#" method="post">{% csrf_token %}
+
+{{ form|crispy }}
+    <br />
+
+<input type="button" class="btn btn-primary updateBtn" name="submit" value="Update">
+<button class="btn btn-primary deleteBtn"><a href="/drivers/delete/{{ drivers.id }}/" style="color:white">Delete Driver</a></button>
+
+</form>
+
+
+{% for i in vehicles %}
+
+  <p>Current Vehicle:  {{ i.number }}</p>
+
+{% endfor %}
+
+{% endblock %}
